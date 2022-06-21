@@ -27,6 +27,14 @@ class DrawActorsAction(Action):
             script (Script): The script of Actions in the game.
         """
 
+        snake = cast.get_first_actor("snakes")
+        segments = snake.get_segments()
+
+        snake2 = cast.get_second_actor("snakes")
+        segments_2snake = snake2.get_segments()
+
+        self._video_service.draw_actors(segments_2snake)
+        self._video_service.draw_actors(segments)
         self._video_service.clear_buffer()
 
         self._video_service.flush_buffer()
