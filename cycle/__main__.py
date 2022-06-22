@@ -15,6 +15,7 @@ from game.casting.snake import Snake
 from game.scripting.control_actors_snake2 import ControlActorsAction_player2
 from game.casting.score import Score
 
+
 def main():
 
     # create the cast
@@ -27,7 +28,7 @@ def main():
     score2 = Score()
     score2.set_position(Point(800, 0))
     cast.add_actor("score", score2)
-    
+
     # create player 1
     player_1 = Snake()
     player_1.set_color(constants.YELLOW)
@@ -55,6 +56,7 @@ def main():
 
     director = Director(video_service)
     director.start_game(cast, script)
+
 
 if __name__ == "__main__":
     main()

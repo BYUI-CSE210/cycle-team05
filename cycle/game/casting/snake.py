@@ -1,7 +1,9 @@
+from tkinter.tix import MAX
 import constants
 import random
 from game.casting.actor import Actor
 from game.shared.point import Point
+
 
 class Snake(Actor):
     """
@@ -56,7 +58,7 @@ class Snake(Actor):
 
     def get_segment_color(self):
         """Gets the actor's segment color as a tuple of three ints (r, g, b).
-        
+
         Returns:
             Color: The actor's text color.
         """
@@ -64,29 +66,31 @@ class Snake(Actor):
 
     def set_segment_color(self, color):
         """Updates the segment color to the given one.
-        
+
         Args:
             color (Color): The given color.
         """
         self._segment_color = color
-    
+
     def get_buttons(self):
         """Gets the snake's button list and returns it.
         Returns:
             Color: The actor's text color.
         """
         return self._buttons
-    
+
     def set_buttons(self, buttons):
         """Updates the button list with the new given buttons.
-        
+
         Args:
             buttons: The given buttons.
         """
         self._buttons = buttons
 
     def _prepare_body(self):
-        x = int(random.randrange(100, 801))
+        x = constants.CELL_SIZE * 4 + \
+            random.randrange(0, 30) * constants.CELL_SIZE
+        #x = int(random.randrange(100, 801))
         y = int(constants.MAX_Y / 2)
 
         for i in range(constants.SNAKE_LENGTH):
