@@ -12,18 +12,26 @@ from game.services.video_service import VideoService
 from game.shared.color import Color
 from game.shared.point import Point
 from game.casting.snake import Snake
-from game.casting.snake2 import Snake_two
 from game.scripting.control_actors_snake2 import ControlActorsAction_player2
-
 
 def main():
 
     # create the cast
     cast = Cast()
-    cast.add_actor("snakes", Snake())
 
-    # This is for the snake two or second actor
-    cast.add_actor("snakes", Snake_two())
+    # create player 1
+    player_1 = Snake()
+    player_1.set_color(constants.YELLOW)
+    player_1.set_segment_color(constants.GREEN)
+    player_1.set_buttons(["w", "a", "s", "d"])
+    cast.add_actor("snakes", player_1)
+
+    # create player 2
+    player_2 = Snake()
+    player_2.set_color(constants.RED)
+    player_2.set_segment_color(constants.PURPLE)
+    player_2.set_buttons(["i", "j", "k", "l"])
+    cast.add_actor("snakes", player_2)
 
     # start the game
     keyboard_service = KeyboardService()
@@ -38,7 +46,6 @@ def main():
 
     director = Director(video_service)
     director.start_game(cast, script)
-
 
 if __name__ == "__main__":
     main()
