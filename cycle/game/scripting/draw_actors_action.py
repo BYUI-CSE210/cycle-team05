@@ -1,3 +1,4 @@
+from email import message
 from game.scripting.action import Action
 
 
@@ -33,8 +34,16 @@ class DrawActorsAction(Action):
         snake2 = cast.get_second_actor("snakes")
         segments_2snake = snake2.get_segments()
 
+        messages = cast.get_actors("messages")
+
+        score_gamer1 = cast.get_first_actor("score")
+        score_gamer2 = cast.get_second_actor("score")
+
         self._video_service.draw_actors(segments_2snake)
         self._video_service.draw_actors(segments)
+        self._video_service.draw_actors(messages, True)
+        self._video_service.draw_actor(score_gamer1)
+        self._video_service.draw_actor(score_gamer2)  
         self._video_service.clear_buffer()
 
         self._video_service.flush_buffer()

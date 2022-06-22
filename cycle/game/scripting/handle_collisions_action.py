@@ -54,18 +54,22 @@ class HandleCollisionsAction(Action):
         snake = cast.get_first_actor("snakes")
         segments = snake.get_segments()[1:]
         head = snake.get_head()
+        score01 = cast.get_first_actor("score")
 
         snake2 = cast.get_second_actor("snakes")
         segments_S2 = snake2.get_segments()[1:]
         head_S2 = snake2.get_head()
+        score02 = cast.get_second_actor("score")
 
         for segment_S2 in segments_S2:
             if head.get_position().equals(segment_S2.get_position()):
                 self._is_game_over = True
+                score02.add_points(1)
 
         for segment in segments:
             if head_S2.get_position().equals(segment.get_position()):
                 self._is_game_over = True
+                score01.add_points(1)
 
     def _handle_segment_collision(self, cast):
         """Sets the game over flag if the snake collides with one of its segments.
@@ -76,18 +80,22 @@ class HandleCollisionsAction(Action):
         snake = cast.get_first_actor("snakes")
         head = snake.get_segments()[0]
         segments = snake.get_segments()[1:]
+        score01 = cast.get_first_actor("score")
 
         snake2 = cast.get_second_actor("snakes")
         head_S2 = snake2.get_segments()[0]
         segments_S2 = snake2.get_segments()[1:]
+        score02 = cast.get_second_actor("score")
 
         for segment in segments:
             if head.get_position().equals(segment.get_position()):
                 self._is_game_over = True
+                score02.add_points(1)
 
         for segment_S2 in segments_S2:
             if head_S2.get_position().equals(segment_S2.get_position()):
                 self._is_game_over = True
+                score01.add_points(1)
 
     def _handle_game_over(self, cast):
         """Shows the 'game over' message and turns the snake and food white if the game is over.
@@ -106,10 +114,10 @@ class HandleCollisionsAction(Action):
             y = int(constants.MAX_Y / 2)
             position = Point(x, y)
 
-            #message = Actor()
-            #message.set_text("Game Over!")
-            # message.set_position(position)
-            #cast.add_actor("messages", message)
+            message = Actor()
+            message.set_text("Game Over!")
+            message.set_position(position)
+            cast.add_actor("messages", message)
 
             for segment in segments:
                 segment.set_color(constants.WHITE)

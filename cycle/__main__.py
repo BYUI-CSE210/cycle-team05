@@ -13,12 +13,21 @@ from game.shared.color import Color
 from game.shared.point import Point
 from game.casting.snake import Snake
 from game.scripting.control_actors_snake2 import ControlActorsAction_player2
+from game.casting.score import Score
 
 def main():
 
     # create the cast
     cast = Cast()
 
+    # This is for create the label of the score in the top of the screen.
+    cast.add_actor("score", Score())
+
+    # This is the second label for the score of the other gamer
+    score2 = Score()
+    score2.set_position(Point(800, 0))
+    cast.add_actor("score", score2)
+    
     # create player 1
     player_1 = Snake()
     player_1.set_color(constants.YELLOW)
