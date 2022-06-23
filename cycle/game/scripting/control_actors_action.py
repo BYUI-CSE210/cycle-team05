@@ -5,7 +5,7 @@ from game.shared.point import Point
 
 class ControlActorsAction(Action):
     """
-    An input action that controls the snake.
+    An input action that controls the snake or gamer 1 with color green.
 
     The responsibility of ControlActorsAction is to get the direction and move the snake's head.
 

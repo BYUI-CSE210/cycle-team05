@@ -10,6 +10,7 @@ class Score(Actor):
     representation of the points earned.
 
     Attributes:
+        _nameGamer (str): this is for the label score at the top of the screen.
         _points (int): The points earned in the game.
     """
 

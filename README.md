@@ -14,6 +14,9 @@ A "game over" message is displayed in the middle of the screen.
 The cycles turn white.
 Players keep moving and turning but don't run into each other.
 
+Extra
+We only changes the labels of the scores to identify every player and the count of the score.
+
 Getting Started
 Make sure you have Python 3.8.0 or newer and Raylib Python CFFI 3.7 installed and running on your machine. You can install Raylib Python CFFI by opening a terminal and running the following command.
 

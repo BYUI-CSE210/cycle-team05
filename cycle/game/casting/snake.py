@@ -7,12 +7,15 @@ from game.shared.point import Point
 
 class Snake(Actor):
     """
-    A long limbless reptile.
+    This is the cycle actor, it is more like a snake.
 
-    The responsibility of Snake is to move itself.
+    The responsibility of Snake or cycle is to move itself.
 
     Attributes:
+        _segments (list): These are the elements of the trail and head of the cycle or snake.
         _points (int): The number of points the food is worth.
+        _segments_color (tuple): This is the color, these are three ints(r,g,b).
+        _buttons (list):
     """
 
     def __init__(self):
@@ -23,9 +26,18 @@ class Snake(Actor):
         self._buttons = []
 
     def get_segments(self):
+        """Gets the actor's segment elements as a list.
+
+        Returns:
+            list : The segments that construct the actor.
+        """
         return self._segments
 
     def move_next(self):
+        """This method let the elements of the segments backward follow the in front
+        elements.
+
+        """
         # move all segments
         for segment in self._segments:
             segment.move_next()
@@ -37,9 +49,19 @@ class Snake(Actor):
             trailing.set_velocity(velocity)
 
     def get_head(self):
+        """Gets the actor's head from the list by index.
+
+        Returns:
+            list element : The segment with index [0].
+        """
         return self._segments[0]
 
     def grow_tail(self, number_of_segments):
+        """This method make the trail of the snake or cycle growing.
+
+        Args:
+            number_of_segments : The amount of segment that grow the trail.
+        """
         for i in range(number_of_segments):
             tail = self._segments[-1]
             velocity = tail.get_velocity()
@@ -54,6 +76,11 @@ class Snake(Actor):
             self._segments.append(segment)
 
     def turn_head(self, velocity):
+        """This method set the velocity of the head element of the cycle.
+
+        Args:
+            velocity : The velocity for index [0] of the segments list.
+        """
         self._segments[0].set_velocity(velocity)
 
     def get_segment_color(self):
@@ -74,6 +101,7 @@ class Snake(Actor):
 
     def get_buttons(self):
         """Gets the snake's button list and returns it.
+
         Returns:
             Color: The actor's text color.
         """
@@ -88,6 +116,9 @@ class Snake(Actor):
         self._buttons = buttons
 
     def _prepare_body(self):
+        """This is the method of the cycle or snake body, the physical characteristics and position.
+
+        """
         x = constants.CELL_SIZE * 4 + \
             random.randrange(0, 30) * constants.CELL_SIZE
         #x = int(random.randrange(100, 801))
