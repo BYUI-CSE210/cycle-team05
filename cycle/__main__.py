@@ -22,11 +22,18 @@ def main():
     cast = Cast()
 
     # This is for create the label of the score in the top of the screen.
-    cast.add_actor("score", Score())
+    score1 = Score()
+    score1.set_text("Green:")
+    score1.label_name_player("Green")
+    cast.add_actor("score", score1)
 
     # This is the second label for the score of the other gamer
     score2 = Score()
+    score2.set_text("Purple:")
+    score2.label_name_player("Purple")
+
     score2.set_position(Point(800, 0))
+
     cast.add_actor("score", score2)
 
     # create player 1
